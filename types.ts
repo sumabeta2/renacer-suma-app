@@ -1,7 +1,7 @@
-// ./types.ts (CORRECCIÓN QUIRÚRGICA para asegurar la exportación)
+// ./types.ts (FINAL Y VERIFICADO)
 
 // Definición de roles del usuario (Enum)
-export enum UserRole { // Asegurando 'export'
+export enum UserRole {
   Medico = 'Médico',
   Enfermero = 'Enfermero/a',
   Paramedico = 'Paramédico',
@@ -9,7 +9,7 @@ export enum UserRole { // Asegurando 'export'
 }
 
 // Interfaz para los datos del paciente
-export interface PatientData { // Asegurando 'export'
+export interface PatientData {
   fullName: string;
   age: string;
   gender: string;
@@ -18,7 +18,7 @@ export interface PatientData { // Asegurando 'export'
 }
 
 // Nueva interfaz para los mensajes del chat
-export interface Message { // Asegurando 'export'
-  sender: 'suma' | 'user'; // Dra. Suma o Usuario
+export interface Message {
+  sender: 'suma' | 'user'; 
   text: string;
 }
