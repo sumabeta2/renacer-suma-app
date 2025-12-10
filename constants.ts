@@ -1,5 +1,19 @@
-// ./constants.ts (ESTADO ANTERIOR RESTAURADO)
+// constants.ts — VERSIÓN COMPLETA Y CORRECTA
 
-export const ADMIN_CODE = "561393";
-export const APP_VERSION = "v. 1.0.0";
-// Sin exportación de ROLE_INITIALS
+import { UserRole } from "./App";
+
+// Código de activación del Administrador
+export const ADMIN_CODE = "SUMA2025";
+
+// Mapa de iniciales para cada rol
+export const ROLE_INITIALS: Record<UserRole, string> = {
+  [UserRole.Medico]: "M",
+  [UserRole.Enfermero]: "E",
+  [UserRole.Paramedico]: "P",
+  [UserRole.PrimerRespondiente]: "PR",
+};
+
+// Mensajes iniciales o textos del sistema (si los necesitas)
+export const SYSTEM_MESSAGES = {
+  welcome: "Hola, soy la Dra. Suma. Estoy aquí para ayudarte.",
+};
