@@ -1,45 +1,23 @@
-<style>
-  /* 1. Animación de Latido (Heart Beat) */
-  @keyframes beat {
-    0%, 100% { 
-        transform: scale(1);
-    }
-    15% { 
-        transform: scale(1.08); /* Pulso más fuerte */
-    } 
-    30% { 
-        transform: scale(1); 
-    }
-  }
-
-  .heart-shape {
-    /* Aplica la animación de latido */
-    animation: beat 1.5s infinite ease-in-out; 
-    position: relative; 
-    z-index: 5;
-  }
-
-  /* 2. Animación de Electrocardiograma (ECG Scan) */
-  @keyframes ecg-scan {
-    /* Mueve de Izquierda a Derecha: empieza fuera y termina en 0 */
-    0% {
-      transform: translateX(-50%); 
-    }
-    100% {
-      transform: translateX(0); 
-    }
-  }
-
-  .ecg-line {
-    /* Aplica la animación al trazado SVG */
-    animation: ecg-scan 3s linear infinite; 
-    stroke-linecap: round;
-  }
-
-  /* 3. Posicionamiento para centrado del ECG */
-  .ecg-container {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); 
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suma App</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
