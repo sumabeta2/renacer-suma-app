@@ -1,50 +1,29 @@
-// types.ts
-// Archivo limpio, estructurado y sin dependencias rotas.
-
-export interface Symptom {
-  id: string;
-  name: string;
-  description?: string;
-}
-
-export interface Disease {
-  id: string;
-  name: string;
-  description: string;
+// Definición del cuerpo que se enviará a la API médica
+export interface ApiRequestBody {
+  patientId?: string;
   symptoms: string[];
-  treatment?: string;
+  age?: number;
+  gender?: "male" | "female" | "other";
+  additionalNotes?: string;
 }
 
-export interface ApiResponse<T> {
+// Estructura de cada recomendación recibida desde la API
+export interface ApiRecommendation {
+  title: string;
+  description: string;
+  priority: "low" | "medium" | "high";
+}
+
+// Respuesta completa de la API
+export interface ApiResponse {
   success: boolean;
-  data: T;
-  message?: string;
+  message: string;
+  recommendations: ApiRecommendation[];
 }
 
-export interface Message {
-  id: string;
-  role: "user" | "assistant" | "system";
-  content: string;
-  timestamp: number;
-}
-
-export interface ChatRequest {
-  messages: Message[];
-  model?: string;
-  temperature?: number;
-}
-
-export interface ChatResponse {
-  reply: string;
-  sources?: string[];
-}
-
-export interface LoadingState {
-  isLoading: boolean;
-  message?: string;
-}
-
-export interface AppConfig {
-  apiKey: string;
-  baseUrl: string;
+// Estado del asistente dentro de la app
+export interface AssistantState {
+  loading: boolean;
+  error: string | null;
+  data: ApiResponse | null;
 }
