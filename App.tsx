@@ -1,4 +1,4 @@
-// ./App.tsx (Ajustes de Compacidad Finales)
+// ./App.tsx (Máxima Optimización de Espacio)
 
 import React, { useState, useCallback, useMemo } from 'react';
 import HeartAnimation from './components/HeartAnimation';
@@ -35,7 +35,8 @@ const App: React.FC = () => {
 
   // Handle the "ACTIVAR" button click for login
   const handleActivate = useCallback(() => {
-    if (activationCode === ADMIN_CODE) {
+    // ADMIN_CODE es 561393 (usando tu constante)
+    if (activationCode === ADMIN_CODE) { 
       setIsLoggedIn(true);
       setShowLoginError(false);
     } else {
@@ -107,7 +108,7 @@ const App: React.FC = () => {
   // Render Login Page if not logged in
   if (!isLoggedIn) {
     return (
-      // Changed flex direction to row and used justify-end to push content to the right
+      // Login Page: Mantenemos el estilo de alineación a la derecha
       <div className="min-h-screen bg-gray-900 flex justify-end items-center p-4">
         {/* Container for login content, constrained width and right-aligned */}
         <div className="flex flex-col items-center text-center max-w-sm w-full p-6 rounded-lg bg-gray-800 shadow-lg lg:mr-16">
@@ -123,7 +124,7 @@ const App: React.FC = () => {
               onChange={handleCodeChange}
               placeholder="Código de 6 dígitos"
               maxLength={6}
-              className="mb-4 mx-auto" // Added mx-auto to center input within its max-w-xs container
+              className="mb-4 mx-auto" 
             />
             {showLoginError && (
               <p className="text-red-500 text-sm mt-2">Código incorrecto. Inténtalo de nuevo.</p>
@@ -156,20 +157,14 @@ const App: React.FC = () => {
         onLogout={handleLogout}
       />
 
-      {/* CLAVE DE COMPACIDAD: Cambiado de p-4 sm:p-6 lg:p-8 a p-3 */}
+      {/* CLAVE DE COMPACIDAD: padding general reducido a p-3 */}
       <main className="flex-1 p-3 overflow-y-auto">
-        {/* "NUEVO CASO" section divider */}
-        {/* CLAVE DE COMPACIDAD: Cambiado my-6 a my-4 */}
-        <div className="relative flex items-center justify-center my-4">
-          <hr className="absolute w-full border-t border-gray-600" />
-          <span className="relative z-10 px-4 py-1 bg-white text-red-500 text-xl font-bold uppercase">
-            NUEVO CASO
-          </span>
-        </div>
+        {/* SECCIÓN "NUEVO CASO" ELIMINADA */}
 
-        {/* Contenedor principal de la tarjeta blanca */}
-        {/* CLAVE DE COMPACIDAD: Cambiado p-6 a p-4 */}
-        <div className="max-w-xl ml-auto mr-4 lg:mr-16 bg-white p-4 rounded-lg shadow-lg text-gray-900">
+        {/* Contenedor de Formulario: max-w-xl (ancho limitado) y mx-auto (centrado) */}
+        {/* CLAVE DE ANCHO: Se elimina ml-auto mr-4 lg:mr-16 y se usa mx-auto para centrar. */}
+        {/* CLAVE DE COMPACIDAD: padding interno reducido a p-4 */}
+        <div className="max-w-xl mx-auto bg-white p-4 rounded-lg shadow-lg text-gray-900">
           {/* User Role Selection */}
           <RoleSelector selectedRole={userRole} onSelectRole={handleRoleSelect} />
           {/* Patient Data Form */}
@@ -179,7 +174,7 @@ const App: React.FC = () => {
           <button
             onClick={onInitiateAssistance}
             disabled={!isInitiateAssistanceEnabled}
-            className={`w-full py-3 px-6 rounded-lg text-lg font-bold uppercase transition-colors duration-200 mb-3 // CLAVE DE COMPACIDAD: mb-4 a mb-3
+            className={`w-full py-3 px-6 rounded-lg text-lg font-bold uppercase transition-colors duration-200 mb-3
                         ${isInitiateAssistanceEnabled
                           ? 'bg-red-600 text-white hover:bg-red-700'
                           : 'bg-gray-500 text-gray-300 cursor-not-allowed'
@@ -190,7 +185,8 @@ const App: React.FC = () => {
           {/* "SOPORTE TECNICO" Button */}
           <button
             onClick={onSupportTicket}
-            className="w-full py-3 px-6 rounded-lg text-lg font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+            // CLAVE DE COMPACIDAD: py-2 en lugar de py-3
+            className="w-full py-2 px-6 rounded-lg text-lg font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
           >
             SOPORTE TECNICO
           </button>
