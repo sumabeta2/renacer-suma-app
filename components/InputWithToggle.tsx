@@ -33,29 +33,27 @@ const InputWithToggle: React.FC<InputWithToggleProps> = ({
         maxLength={maxLength}
         pattern={pattern}
         inputMode="numeric"
-        // CORRECCIÓN 1 & 2: Fondo blanco, texto negro y placeholder gris
+        // Estilo: Fondo blanco, texto negro, borde rojo
         className="flex-grow p-3 pr-10 border-2 border-red-500 rounded-lg bg-white text-gray-900 text-center placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-400"
       />
       <button
         type="button"
         onClick={toggleVisibility}
-        // Color del icono: Rojo para mantener la coherencia del diseño
+        // Color del icono: Rojo
         className="absolute right-3 p-1 text-red-500 hover:text-red-700 focus:outline-none"
         aria-label={passwordVisible ? 'Hide code' : 'Show code'}
       >
         {passwordVisible ? (
-          // OJO ABIERTO (Código Visible)
+          // 👁️ OJO ABIERTO (Código Visible)
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         ) : (
-          // CORRECCIÓN 3: OJO TACHADO (Código Oculto)
+          // 🚫 OJO TACHADO (Código Oculto) - Versión limpia y legible
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.988 5.704a2.25 2.25 0 012.447-2.447L10.5 5.25m2.25 2.25L10.5 5.25m-2.25 2.25l2.5-2.5m1.5-1.5l2.5-2.5m1.5-1.5l2.5-2.5m1.5-1.5l2.5-2.5m1.5-1.5l2.5-2.5m1.5-1.5l2.5-2.5m1.5-1.5l2.5-2.5M10.5 5.25l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5M10.5 5.25l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5M10.5 5.25l-2.5 2.5" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6.75l-4.5 4.5m4.5-4.5l-2.5 2.5m1.5-1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5M10.5 6.75l-4.5 4.5m4.5-4.5l-2.5 2.5m1.5-1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5M10.5 6.75l-4.5 4.5m4.5-4.5l-2.5 2.5m1.5-1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5m1.5 1.5l-2.5 2.5M10.5 6.75l-4.5 4.5" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75c4.78 0 8.85-3.6 9.88-8.52a.75.75 0 000-.46c-1.03-4.92-5.1-8.52-9.88-8.52S3.15 5.85 2.12 10.77a.75.75 0 000 .46c1.03 4.92 5.1 8.52 9.88 8.52zm0-3a3 3 0 100-6 3 3 0 000 6z" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 10.5l3 3m-3 0l3-3" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.988 5.704a2.25 2.25 0 00-2.447 2.447L10.5 18.251c.075.298.298.54.596.635l2.404.722a.75.75 0 00.75-1.309L12 11.25m-1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m-3.75-3.75l1.5-1.5m-3.75-3.75l1.5-1.5" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M18.895 18.293a10 10 0 00-14.79 0m.789-.79a7.5 7.5 0 0110.608 0M12 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         )}
       </button>
