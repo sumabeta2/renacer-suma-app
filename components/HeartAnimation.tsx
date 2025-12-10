@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Definitiva - Grande y al borde)
+// ./components/HeartAnimation.tsx (Onda ECG Final - Cubre la 'S' y llega al borde derecho)
 
 import React from 'react';
 
@@ -61,22 +61,21 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
       >
         <svg
           className="ecg-wave"
-          // Mantenemos el viewBox 100x20
           viewBox="0 0 100 20"
           preserveAspectRatio="none"
-          // El SVG usa el 100% del contenedor (que es 100% del ancho del corazón)
           style={{ width: '100%', height: '100%' }} 
         >
-          {/* ONDA ECG FINAL: Trazado que ahora ocupa todo el ancho y tiene grosor 1.5. */}
+          {/* ONDA ECG FINAL: Trazado con el último segmento extendido. */}
           <polyline
             className="ecg-line" 
             fill="none"
             stroke="#059669" // Color verde/turquesa
-            strokeWidth="1.5" // Grosor restaurado
+            strokeWidth="1.5" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            // Trazado ajustado para una línea inicial y final más largas y el pico central más ancho.
-            points="0,10 10,10 15,10 20,4 25,16 30,10 35,10 40,10 45,4 50,16 55,10 90,10 100,10"
+            // Trazado ajustado: La línea final se extiende hasta 110 (fuera del viewBox de 100)
+            // Esto asegura que se vea llena hasta el borde derecho del contenedor del corazón.
+            points="0,10 10,10 15,10 20,4 25,16 30,10 35,10 40,10 45,4 50,16 55,10 95,10 110,10" 
           />
         </svg>
       </div>
