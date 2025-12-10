@@ -1,4 +1,4 @@
-// ./components/PatientForm.tsx (Máxima Compacidad)
+// ./components/PatientForm.tsx (Título Compactado)
 
 import React from 'react';
 import { PatientData } from '../types';
@@ -9,16 +9,15 @@ interface PatientFormProps {
 }
 
 const PatientForm: React.FC<PatientFormProps> = ({ patientData, onDataChange }) => {
-  // CLAVE DE COMPACIDAD: p-2 en lugar de p-3
+  // CLAVE DE COMPACIDAD: p-2 en lugar de p-3 para inputs
   const inputBaseStyle = "w-full p-2 border-2 rounded-lg text-gray-900 transition-colors duration-200 resize-y";
-  // Colores del borde en reposo y foco
   const inputBorderStyles = "border-gray-300 focus:border-blue-500 placeholder-gray-500 focus:ring-1 focus:ring-blue-500";
   
   return (
-    <div className="space-y-4 pt-2"> {/* Reducido space-y de 6 a 4 */}
+    <div className="space-y-4 pt-2"> 
       
-      {/* 1. SECCIÓN TÍTULO: Elevado con ícono y color de acento */}
-      <h3 className="text-xl font-extrabold text-gray-900 uppercase tracking-wide flex items-center mb-1">
+      {/* 1. SECCIÓN TÍTULO: CLAVE DE COMPACIDAD: text-lg en lugar de text-xl */}
+      <h3 className="text-lg font-extrabold text-gray-900 uppercase tracking-wide flex items-center mb-1">
         {/* Ícono de identificación para Datos de Paciente */}
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M10 16h.01" />
@@ -31,7 +30,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ patientData, onDataChange }) 
         (*) Nombre, Edad y Rol son campos obligatorios.
       </p>
 
-      <div className="space-y-3"> {/* Reducido space-y de 4 a 3 */}
+      <div className="space-y-3">
         
         {/* 1. Nombre Completo (*) - Input con Label y Outline */}
         <div className="space-y-1">
@@ -89,7 +88,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ patientData, onDataChange }) 
             </div>
         </div>
         
-        {/* 4. Medicación Actual - Textarea con Label y Outline */}
+        {/* 4. Medicación Actual - Textarea */}
         <div className="space-y-1">
             <label htmlFor="currentMedication" className="text-xs font-semibold uppercase text-gray-700">
                 Medicación Actual
@@ -99,12 +98,12 @@ const PatientForm: React.FC<PatientFormProps> = ({ patientData, onDataChange }) 
               placeholder="Ej: Aspirina, Insulina"
               value={patientData.currentMedication}
               onChange={(e) => onDataChange('currentMedication', e.target.value)}
-              rows={2} // Mantenido en 2
+              rows={2} 
               className={`${inputBaseStyle} ${inputBorderStyles} resize-none`}
             ></textarea>
         </div>
 
-        {/* 5. Antecedentes de Salud - Textarea con Label y Outline */}
+        {/* 5. Antecedentes de Salud - Textarea */}
         <div className="space-y-1">
             <label htmlFor="healthHistory" className="text-xs font-semibold uppercase text-gray-700">
                 Antecedentes de Salud
@@ -114,7 +113,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ patientData, onDataChange }) 
               placeholder="Ej: Alergia a la penicilina, Hipertensión."
               value={patientData.healthHistory}
               onChange={(e) => onDataChange('healthHistory', e.target.value)}
-              rows={2} // CLAVE DE COMPACIDAD: Reducido de 3 a 2
+              rows={2}
               className={`${inputBaseStyle} ${inputBorderStyles} resize-none`}
             ></textarea>
         </div>
