@@ -1,19 +1,20 @@
-// constants.ts — VERSIÓN COMPLETA Y CORRECTA
+// constants.ts
 
-import { UserRole } from "./App";
+// Código administrativo
+export const ADMIN_CODE = "SUMA-001";
 
-// Código de activación del Administrador
-export const ADMIN_CODE = "SUMA2025";
-
-// Mapa de iniciales para cada rol
-export const ROLE_INITIALS: Record<UserRole, string> = {
-  [UserRole.Medico]: "M",
-  [UserRole.Enfermero]: "E",
-  [UserRole.Paramedico]: "P",
-  [UserRole.PrimerRespondiente]: "PR",
+// Iniciales de roles — necesario para ChatInterface.tsx
+export const ROLE_INITIALS: Record<string, string> = {
+  "Médico": "MD",
+  "Enfermero/a": "EN",
+  "Paramédico": "PM",
+  "Primer Respondiente": "PR"
 };
 
-// Mensajes iniciales o textos del sistema (si los necesitas)
-export const SYSTEM_MESSAGES = {
-  welcome: "Hola, soy la Dra. Suma. Estoy aquí para ayudarte.",
+// Configuración de colores para cada rol
+export const ROLE_COLORS: Record<string, string> = {
+  "Médico": "#1976d2",
+  "Enfermero/a": "#0288d1",
+  "Paramédico": "#388e3c",
+  "Primer Respondiente": "#f57c00"
 };
