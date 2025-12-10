@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Profesional y Completa)
+// ./components/HeartAnimation.tsx (Onda ECG que se extiende hasta la derecha)
 
 import React from 'react';
 
@@ -23,12 +23,12 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
   };
 
   return (
-    // Contenedor principal con la clase CSS para el Latido
+    // Contenedor principal
     <div
       className="relative flex items-center justify-center heart-beat-container"
       style={heartStyle}
     >
-      {/* Corazón SVG: Forma estándar, Borde Azul, Relleno Rojo. */}
+      {/* Corazón SVG */}
       <svg
         className="text-red-600 heart-shape absolute" 
         fill="currentColor"
@@ -49,24 +49,26 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
       </span>
 
       {/* Contenedor del Electrocardiograma (ECG) */}
-      <div className="ecg-container absolute overflow-hidden z-10" style={{ width: '80%', height: '40%' }}>
+      {/* Ajuste: Ancho del contenedor al 100% del corazón para que la línea se extienda más allá de la derecha */}
+      <div className="ecg-container absolute overflow-hidden z-10" style={{ width: '100%', height: '40%' }}>
         <svg
           className="ecg-wave"
           viewBox="0 0 100 20"
           preserveAspectRatio="none"
-          style={{ width: '200%', height: '100%' }}
+          // Ajuste: El ancho del SVG a 200% para simular el desplazamiento animado (si se aplica)
+          style={{ width: '200%', height: '100%' }} 
         >
-          {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados */}
+          {/* ONDA ECG FINAL: Trazado extendido y con punta redondeada */}
           <polyline
             className="ecg-line" 
             fill="none"
-            stroke="#059669" // Color verde/turquesa
+            stroke="#059669" 
             strokeWidth="1.5"
-            // ESTILOS PARA LA PUNTA REDONDEADA
-            strokeLinecap="round" // Hace que el final de la línea sea redondo
-            strokeLinejoin="round" // Hace que las uniones de los picos sean redondas
-            // Trazado con picos QRS definidos
-            points="0,10 5,10 7,9 8,11 9,10 11,10 12,3 13,17 14,10 16,10 18,9 19,11 20,10 22,10 23,3 24,17 25,10 27,10 100,10"
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            // Trazado extendido: La última coordenada es 100,10 que en este viewBox representa el final.
+            // Para asegurar que se vea la línea saliendo por la derecha, extendemos la última línea recta.
+            points="0,10 5,10 7,9 8,11 9,10 11,10 12,3 13,17 14,10 16,10 18,9 19,11 20,10 22,10 23,3 24,17 25,10 27,10 30,10 150,10" // El 150 extiende la línea recta final
           />
         </svg>
       </div>
