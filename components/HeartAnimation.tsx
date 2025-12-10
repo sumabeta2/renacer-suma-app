@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Centrada y Contenida)
+// ./components/HeartAnimation.tsx (Onda ECG Final - Cubre la 'S')
 
 import React from 'react';
 
@@ -12,20 +12,20 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     height: `${size}px`,
   };
 
-  // Ajuste de centrado: -52% en Y para subir la S ligeramente.
+  // Ajuste de centrado de la 'S': Subida ligeramente menos agresiva para alinear con la onda.
   const sStyle = {
     fontSize: `${size * 0.4}px`, 
     zIndex: 20, 
     position: 'absolute' as const, 
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -52%)', 
+    transform: 'translate(-50%, -50%)', // Centrado más estricto
   };
   
-  // Nota: El ecg-container vuelve a usar Tailwind para centrado
+  // Estilos del Contenedor del ECG
   const ecgContainerStyle = { 
-    width: '80%', 
-    height: '40%', 
+    width: '85%',     // Aumentamos ligeramente el ancho para que la onda se vea más completa
+    height: '60%',    // Aumentamos la altura para que los picos sean más grandes
   };
 
   return (
@@ -54,8 +54,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
         S
       </span>
 
-      {/* Contenedor del Electrocardiograma (ECG) 
-          Aseguramos que esté ABSOLUTE y centrado dentro del corazón */}
+      {/* Contenedor del Electrocardiograma (ECG) */}
       <div 
         className="ecg-container absolute overflow-hidden z-10 flex items-center justify-center" 
         style={ecgContainerStyle}
@@ -64,7 +63,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
           className="ecg-wave"
           viewBox="0 0 100 20"
           preserveAspectRatio="none"
-          // Ancho 100% para que el SVG use todo el espacio del contenedor del 80%
+          // Ancho 100% para que el SVG use todo el espacio del contenedor
           style={{ width: '100%', height: '100%' }} 
         >
           {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados. */}
@@ -75,7 +74,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
             strokeWidth="1.5"
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            // Trazado de ECG profesional (se ajusta al 100% del ancho del viewBox)
+            // Trazado de ECG profesional
             points="0,10 5,10 7,9 8,11 9,10 11,10 12,3 13,17 14,10 16,10 18,9 19,11 20,10 22,10 23,3 24,17 25,10 27,10 100,10"
           />
         </svg>
