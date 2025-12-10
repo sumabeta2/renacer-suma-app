@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Centrado Vertical Definitivo)
+// ./components/HeartAnimation.tsx (Centrado Vertical ABSOLUTO)
 
 import React from 'react';
 
@@ -12,7 +12,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     height: `${size}px`,
   };
 
-  // Centrado de la 'S' (debe estar perfectamente centrado)
+  // Centrado de la 'S'
   const sStyle = {
     fontSize: `${size * 0.4}px`, 
     zIndex: 20, 
@@ -22,14 +22,14 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     transform: 'translate(-50%, -50%)', 
   };
   
-  // Contenedor del ECG: 100% de ancho del corazón y 60% de altura.
+  // Contenedor del ECG: 100% de ancho y 60% de altura.
   const ecgContainerStyle = { 
     width: '100%',     
     height: '60%',
     position: 'absolute' as const, 
-    // TÉCNICA DE CENTRADO PERFECTO:
-    top: '50%', // Posiciona el borde superior en el 50% del corazón
-    transform: 'translateY(-30%)', // Desplaza el contenedor hacia ARRIBA el 30% (la mitad de su altura de 60%)
+    // CENTRADO ABSOLUTO: Mueve el borde superior al 50% y luego desplaza hacia arriba el 50% de su propia altura (60% / 2 = 30% del corazón)
+    top: '50%', 
+    transform: 'translateY(-50%)', // DESPLAZAMIENTO FINAL: Mueve el contenedor hacia arriba el 50% de su propia altura (lo centra perfectamente)
     left: '0', 
   };
 
@@ -77,7 +77,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
             strokeWidth="1.5" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            // Puntos estables con cola extendida (para llegar al borde derecho)
+            // Puntos estables
             points="0,10 10,10 15,10 20,4 25,16 30,10 35,10 40,10 45,4 50,16 55,10 95,10 120,10" 
           />
         </svg>
