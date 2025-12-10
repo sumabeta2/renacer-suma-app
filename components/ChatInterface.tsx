@@ -1,4 +1,4 @@
-// ./components/ChatInterface.tsx (Interfaz de Chat con Dra. Suma)
+// ./components/ChatInterface.tsx (Interfaz de Chat con Dra. Suma - CORREGIDO)
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { UserRole, PatientData, Message } from '../types';
@@ -12,6 +12,7 @@ interface ChatInterfaceProps {
 }
 
 // --- Componente de Burbuja de Chat ---
+// Usa HeartIcon para Dra. Suma y las iniciales para el usuario
 const ChatBubble: React.FC<{ message: Message; role: UserRole }> = ({ message, role }) => {
   const isSuma = message.sender === 'suma';
   const initials = ROLE_INITIALS[role];
@@ -19,7 +20,7 @@ const ChatBubble: React.FC<{ message: Message; role: UserRole }> = ({ message, r
   return (
     <div className={`flex mb-4 ${isSuma ? 'justify-start' : 'justify-end'}`}>
       {isSuma && (
-        {/* Icono Dra. Suma (Logo de Corazón con S) */}
+        // Icono Dra. Suma (Logo de Corazón con S) <-- ERROR SOLUCIONADO AQUÍ: USANDO // EN LUGAR DE /* */
         <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 flex items-center justify-center mr-2">
           <HeartIcon className="w-5 h-5 text-white" />
         </div>
@@ -29,8 +30,8 @@ const ChatBubble: React.FC<{ message: Message; role: UserRole }> = ({ message, r
       <div className={`max-w-xs lg:max-w-md ${isSuma ? 'order-2' : 'order-1'}`}>
         <div className={`px-4 py-2 text-base rounded-xl shadow ${
           isSuma 
-            ? 'bg-red-600 text-white rounded-tl-none' 
-            : 'bg-white text-gray-900 rounded-tr-none'
+            ? 'bg-red-600 text-white rounded-tl-none' // Dra. Suma: Rojo y Blanco
+            : 'bg-white text-gray-900 rounded-tr-none' // Usuario: Blanco y Negro
         }`}>
           {message.text}
         </div>
@@ -100,15 +101,15 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ userRole, patientData, on
       const sumaResponseText = generateSimulatedResponse(userText, userRole);
       const sumaResponse: Message = { sender: 'suma', text: sumaResponseText };
       setMessages((prev) => [...prev, sumaResponse]);
-    }, 1500);
+    }, 1500); // Pequeño delay para simular el procesamiento de la IA
   }, [inputMessage, userRole]);
 
 
-  // --- Lógica de Simulación de la IA ---
+  // --- Lógica de Simulación de la IA (DEBE SER REEMPLAZADA POR TU MOTOR REAL) ---
   const generateSimulatedResponse = (userText: string, role: UserRole): string => {
     const lowerText = userText.toLowerCase();
 
-    if (lowerText.includes('paro') || (lowerText.includes('inconsciente') && !lowerText.includes('respira'))) {
+    if (lowerText.includes('paro') || lowerText.includes('inconsciente') && !lowerText.includes('respira')) {
       if (role === UserRole.Medico) {
         return "PCI (Paro Cardíaco Intrahospitalario) o PCEA. Asegure un acceso IV/IO. Ordene 1mg de Epinefrina IV/IO cada 3-5 min. Considere desfibrilación inmediata si es fibrilación ventricular o taquicardia ventricular sin pulso. ¿Ritmo en el monitor?";
       } else if (role === UserRole.Paramedico) {
@@ -124,6 +125,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ userRole, patientData, on
       return "Aplique presión directa y firme sobre el punto de sangrado con un paño limpio o gasa. Si es severo, ¿hay signos de shock? (Palidez, sudoración).";
     }
 
+    // Respuesta por defecto, adaptable al rol
     return `Gracias por el dato, ${role}. Para poder brindarte la mejor guía actualizada (OMS/AHA/PHTLS), necesito más detalles clínicos o tu siguiente acción.`;
   };
   // --------------------------------------
