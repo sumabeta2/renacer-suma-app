@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Versión Estable Revertida)
+// ./components/HeartAnimation.tsx (Código con Animación y Borde)
 
 import React from 'react';
 
@@ -12,11 +12,10 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     height: `${size}px`,
   };
 
-  // Estilos en línea para centrar la 'S'
+  // Estilos en línea para centrar la 'S' perfectamente
   const sStyle = {
     fontSize: `${size * 0.4}px`, 
     zIndex: 20, 
-    // Centrado absoluto
     position: 'absolute' as const, 
     top: '50%',
     left: '50%',
@@ -24,28 +23,51 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
   };
 
   return (
-    // Revertimos a la estructura simple que no contenía errores.
+    // Contenedor principal con la clase CSS para el Latido
     <div
-      className="relative flex items-center justify-center"
+      className="relative flex items-center justify-center heart-beat-container"
       style={heartStyle}
     >
-      {/* Usamos el SVG del corazón estándar */}
+      {/* Corazón SVG: Borde Azul, Relleno Rojo */}
       <svg
-        className="text-red-600 absolute"
+        className="text-red-600 heart-shape absolute"
         fill="currentColor"
-        viewBox="0 0 24 24"
+        stroke="#3B82F6" // Color de borde azul (Tailwind blue-500)
+        strokeWidth="2" // Grosor del borde (2px)
+        viewBox="0 0 100 100" // ViewBox adaptado para la forma
         style={{ width: '100%', height: '100%' }}
       >
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.15C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        {/* Path con una forma de corazón más real/tradicional */}
+        <path d="M90 40c0-10.87-4.47-20.72-11.66-27.87C71.59 4.3 62.06 0 52 0c-10.06 0-19.59 4.3-26.34 12.13C14.47 19.28 10 29.13 10 40c0 14.38 8.16 26.68 20.37 36.31L50 96.67l19.63-20.36C81.84 66.68 90 54.38 90 40z" />
       </svg>
-      
-      {/* LETRA 'S' que ya estaba visible */}
+
+      {/* LETRA 'S' BLANCA (Centrada) */}
       <span 
         className="text-white font-extrabold"
         style={sStyle}
       >
         S
       </span>
+
+      {/* Contenedor del Electrocardiograma (ECG) */}
+      <div className="ecg-container absolute overflow-hidden z-10" style={{ width: '80%', height: '40%' }}>
+        <svg
+          className="ecg-wave"
+          viewBox="0 0 100 20"
+          preserveAspectRatio="none"
+          style={{ width: '200%', height: '100%' }}
+        >
+          {/* La onda del Electrocardiograma (ECG) animada */}
+          <polyline
+            className="ecg-line"
+            fill="none"
+            stroke="#059669" // Verde (Emerald-600)
+            strokeWidth="0.5"
+            // Trazado de ECG mejorado (Pico P, QRS, Pico T)
+            points="0,10 5,10 7,9 9,10 11,10 12,9.5 13,10 15,10 16,7 17,13 18,10 22,10 24,10 26,9 28,10 30,10 31,9.5 32,10 34,10 35,7 36,13 37,10 100,10"
+          />
+        </svg>
+      </div>
     </div>
   );
 };
