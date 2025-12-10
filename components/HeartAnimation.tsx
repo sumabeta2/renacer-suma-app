@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Contenida y Profesional)
+// ./components/HeartAnimation.tsx (Onda ECG Centrada y Contenida)
 
 import React from 'react';
 
@@ -21,13 +21,11 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     left: '50%',
     transform: 'translate(-50%, -52%)', 
   };
-
-  // Estilos del Contenedor del ECG para llenarlo completamente
+  
+  // Nota: El ecg-container vuelve a usar Tailwind para centrado
   const ecgContainerStyle = { 
-    width: '100%', 
-    height: '40%', // Mantiene la altura para que esté centrado verticalmente en el medio
-    top: '30%', // Posiciona el contenedor en el centro verticalmente
-    left: '0', 
+    width: '80%', 
+    height: '40%', 
   };
 
   return (
@@ -56,16 +54,20 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
         S
       </span>
 
-      {/* Contenedor del Electrocardiograma (ECG) */}
-      <div className="ecg-container absolute overflow-hidden z-10" style={ecgContainerStyle}>
+      {/* Contenedor del Electrocardiograma (ECG) 
+          Aseguramos que esté ABSOLUTE y centrado dentro del corazón */}
+      <div 
+        className="ecg-container absolute overflow-hidden z-10 flex items-center justify-center" 
+        style={ecgContainerStyle}
+      >
         <svg
           className="ecg-wave"
           viewBox="0 0 100 20"
           preserveAspectRatio="none"
-          // Ancho 100% para que se ajuste al ancho del corazón y no se salga.
+          // Ancho 100% para que el SVG use todo el espacio del contenedor del 80%
           style={{ width: '100%', height: '100%' }} 
         >
-          {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados. Coordenada final en 100,10. */}
+          {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados. */}
           <polyline
             className="ecg-line" 
             fill="none"
