@@ -1,4 +1,4 @@
-// ./types.ts (FINAL Y VERIFICADO)
+// ./types.d.ts (SOLUCIÓN FORZADA PARA EL BUILD)
 
 // Definición de roles del usuario (Enum)
 export enum UserRole {
