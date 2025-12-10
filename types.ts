@@ -1,29 +1,24 @@
-// Definición del cuerpo que se enviará a la API médica
-export interface ApiRequestBody {
-  patientId?: string;
-  symptoms: string[];
-  age?: number;
-  gender?: "male" | "female" | "other";
-  additionalNotes?: string;
+// src/types.ts
+export enum UserRole {
+  Medico = 'Médico',
+  Enfermero = 'Enfermero/a',
+  Paramedico = 'Paramédico',
+  PrimerRespondiente = 'Primer Respondiente',
 }
 
-// Estructura de cada recomendación recibida desde la API
-export interface ApiRecommendation {
-  title: string;
-  description: string;
-  priority: "low" | "medium" | "high";
+export interface PatientData {
+  fullName: string;
+  age: string;
+  gender: string;
+  currentMedication: string;
+  healthHistory: string;
 }
 
-// Respuesta completa de la API
-export interface ApiResponse {
-  success: boolean;
-  message: string;
-  recommendations: ApiRecommendation[];
-}
+export type Sender = 'suma' | 'user';
 
-// Estado del asistente dentro de la app
-export interface AssistantState {
-  loading: boolean;
-  error: string | null;
-  data: ApiResponse | null;
+export interface Message {
+  id: string;
+  sender: Sender;
+  text: string;
+  timestamp: number;
 }
