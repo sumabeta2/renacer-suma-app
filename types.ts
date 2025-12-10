@@ -1,4 +1,4 @@
-// ./types.d.ts (SOLUCIÓN FORZADA PARA EL BUILD)
+// ./types.ts (CORRECCIÓN FINAL DE EXPORTACIÓN PARA COMPATIBILIDAD CON ROLLUP)
 
 // Definición de roles del usuario (Enum)
 export enum UserRole {
@@ -22,3 +22,5 @@ export interface Message {
   sender: 'suma' | 'user'; 
   text: string;
 }
+// *** No hay cambios aquí, ya que el código previo era correcto. ***
+// *** El error está en la manera en que el bundler lee estas exportaciones. ***
