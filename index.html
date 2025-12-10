@@ -1,70 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Suma App</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* 1. Animación de Latido (Heart Beat) */
+  @keyframes beat {
+    0%, 100% { 
+        transform: scale(1);
+    }
+    15% { 
+        transform: scale(1.08); /* Pulso más fuerte */
+    } 
+    30% { 
+        transform: scale(1); 
+    }
+  }
 
-    <style>
-      /* 1. Animación de Latido (Heart Beat) */
-      @keyframes beat {
-        0%, 100% { 
-            transform: scale(1);
-        }
-        15% { 
-            transform: scale(1.08); /* Pulso más fuerte */
-        } 
-        30% { 
-            transform: scale(1); 
-        }
-      }
-    
-      .heart-shape {
-        /* Aplica la animación al SVG del corazón */
-        animation: beat 1.5s infinite ease-in-out; 
-        position: relative; 
-        z-index: 5;
-      }
-    
-      /* 2. Animación de Electrocardiograma (ECG Scan) */
-      @keyframes ecg-scan {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          /* Mueve la línea el 50% de su propio ancho para un flujo continuo de izquierda a derecha */
-          transform: translateX(-50%); 
-        }
-      }
-    
-      .ecg-line {
-        /* Aplica la animación al SVG Polyline */
-        animation: ecg-scan 1.5s linear infinite; 
-        stroke-linecap: round;
-      }
-    
-      /* 3. Posicionamiento para que el ECG quede centrado dentro del corazón */
-      .ecg-container {
-          top: 50%;
-          left: 50%;
-          /* Centrado */
-          transform: translate(-50%, -50%); 
-      }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-<body class="bg-gray-900 text-white min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-</body>
-</html>
+  .heart-shape {
+    /* Aplica la animación al SVG del corazón */
+    animation: beat 1.5s infinite ease-in-out; 
+    position: relative; 
+    z-index: 5;
+  }
+
+  /* 2. Animación de Electrocardiograma (ECG Scan) */
+  @keyframes ecg-scan {
+    /* Iniciamos la línea fuera de vista a la izquierda */
+    0% {
+      transform: translateX(-50%); 
+    }
+    /* La movemos hacia la derecha hasta la posición inicial del contenedor */
+    100% {
+      transform: translateX(0); 
+    }
+  }
+
+  .ecg-line {
+    /* Aplica la animación. Duración ligeramente mayor para un movimiento suave */
+    animation: ecg-scan 3s linear infinite; 
+    stroke-linecap: round;
+  }
+
+  /* 3. Posicionamiento para que el ECG quede centrado dentro del corazón */
+  .ecg-container {
+      top: 50%;
+      left: 50%;
+      /* Centrado */
+      transform: translate(-50%, -50%); 
+  }
+</style>
