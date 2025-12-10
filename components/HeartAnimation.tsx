@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Ajustado)
+// ./components/HeartAnimation.tsx (Versión Final Definitiva)
 
 import React from 'react';
 
@@ -19,7 +19,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     position: 'absolute' as const, 
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -52%)', // Ajuste para subir la S
+    transform: 'translate(-50%, -52%)', // Ajuste para centrado vertical
   };
 
   return (
@@ -61,7 +61,8 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
             className="ecg-line" // Aplica clase para la animación ECG
             fill="none"
             stroke="#059669" 
-            strokeWidth="0.5"
+            // AJUSTE CRÍTICO: Incrementamos el grosor de la línea
+            strokeWidth="1.5"
             points="0,10 5,10 7,9 9,10 11,10 12,9.5 13,10 15,10 16,7 17,13 18,10 22,10 24,10 26,9 28,10 30,10 31,9.5 32,10 34,10 35,7 36,13 37,10 100,10"
           />
         </svg>
