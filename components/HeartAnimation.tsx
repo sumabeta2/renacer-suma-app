@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Final - Cubre la 'S')
+// ./components/HeartAnimation.tsx (Onda ECG Definitiva - Grande y al borde)
 
 import React from 'react';
 
@@ -12,20 +12,20 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
     height: `${size}px`,
   };
 
-  // Ajuste de centrado de la 'S': Subida ligeramente menos agresiva para alinear con la onda.
+  // Centrado de la 'S'
   const sStyle = {
     fontSize: `${size * 0.4}px`, 
     zIndex: 20, 
     position: 'absolute' as const, 
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)', // Centrado más estricto
+    transform: 'translate(-50%, -50%)', 
   };
   
-  // Estilos del Contenedor del ECG
+  // Contenedor del ECG: 100% de ancho y altura suficiente para que los picos cubran la S.
   const ecgContainerStyle = { 
-    width: '85%',     // Aumentamos ligeramente el ancho para que la onda se vea más completa
-    height: '60%',    // Aumentamos la altura para que los picos sean más grandes
+    width: '100%',     
+    height: '60%',    // Altura del 60% para picos grandes
   };
 
   return (
@@ -61,21 +61,22 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
       >
         <svg
           className="ecg-wave"
+          // Mantenemos el viewBox 100x20
           viewBox="0 0 100 20"
           preserveAspectRatio="none"
-          // Ancho 100% para que el SVG use todo el espacio del contenedor
+          // El SVG usa el 100% del contenedor (que es 100% del ancho del corazón)
           style={{ width: '100%', height: '100%' }} 
         >
-          {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados. */}
+          {/* ONDA ECG FINAL: Trazado que ahora ocupa todo el ancho y tiene grosor 1.5. */}
           <polyline
             className="ecg-line" 
             fill="none"
             stroke="#059669" // Color verde/turquesa
-            strokeWidth="1.5"
+            strokeWidth="1.5" // Grosor restaurado
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            // Trazado de ECG profesional
-            points="0,10 5,10 7,9 8,11 9,10 11,10 12,3 13,17 14,10 16,10 18,9 19,11 20,10 22,10 23,3 24,17 25,10 27,10 100,10"
+            // Trazado ajustado para una línea inicial y final más largas y el pico central más ancho.
+            points="0,10 10,10 15,10 20,4 25,16 30,10 35,10 40,10 45,4 50,16 55,10 90,10 100,10"
           />
         </svg>
       </div>
