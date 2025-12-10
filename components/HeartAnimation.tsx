@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG DEFINITIVA - Más Pronunciada)
+// ./components/HeartAnimation.tsx (Onda ECG Profesional y Completa)
 
 import React from 'react';
 
@@ -56,13 +56,16 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
           preserveAspectRatio="none"
           style={{ width: '200%', height: '100%' }}
         >
-          {/* ONDA ECG DEFINITIVA: Picos QRS altos y claros */}
+          {/* ONDA ECG FINAL: Trazado definido y estilos de punta redondeada aplicados */}
           <polyline
             className="ecg-line" 
             fill="none"
             stroke="#059669" // Color verde/turquesa
             strokeWidth="1.5"
-            // Trazado con picos muy definidos
+            // ESTILOS PARA LA PUNTA REDONDEADA
+            strokeLinecap="round" // Hace que el final de la línea sea redondo
+            strokeLinejoin="round" // Hace que las uniones de los picos sean redondas
+            // Trazado con picos QRS definidos
             points="0,10 5,10 7,9 8,11 9,10 11,10 12,3 13,17 14,10 16,10 18,9 19,11 20,10 22,10 23,3 24,17 25,10 27,10 100,10"
           />
         </svg>
