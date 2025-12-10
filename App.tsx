@@ -1,19 +1,21 @@
-// ./App.tsx (Ajuste del Botón Soporte)
+// ./App.tsx (Código final con la funcionalidad de Chat y Transición)
 
 import React, { useState, useCallback, useMemo } from 'react';
-import HeartAnimation from './components/HeartAnimation';
-import InputWithToggle from './components/InputWithToggle';
-import Header from './components/Header';
+import HeartAnimation from './components/HeartAnimation'; // Asumido existente
+import InputWithToggle from './components/InputWithToggle'; // Asumido existente
+import Header from './components/Header'; // Asumido existente
 import RoleSelector from './components/RoleSelector';
-import PatientForm from './components/PatientForm';
-import { ADMIN_CODE, APP_VERSION } from './constants';
-import { UserRole, PatientData } from './types';
+import PatientForm from './components/PatientForm'; // Asumido existente
+import ChatInterface from './components/ChatInterface'; // <--- IMPORTACIÓN CLAVE
+import { ADMIN_CODE } from './constants';
+import { UserRole, PatientData } from './types'; // <--- IMPORTACIÓN CLAVE
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activationCode, setActivationCode] = useState('');
   const [showLoginError, setShowLoginError] = useState(false);
   const [userRole, setUserRole] = useState<UserRole | null>(null);
+  const [isChatActive, setIsChatActive] = useState(false); // <--- NUEVO ESTADO PARA EL CHAT
   const [patientData, setPatientData] = useState<PatientData>({
     fullName: '',
     age: '',
@@ -22,18 +24,15 @@ const App: React.FC = () => {
     healthHistory: '',
   });
 
-  // Determine if the current user is an admin
   const isAdmin = useMemo(() => isLoggedIn && activationCode === ADMIN_CODE, [isLoggedIn, activationCode]);
 
-  // Handle changes in the activation code input field
+  // Handlers de login (Mantenidos)
   const handleCodeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow numeric input and limit to 6 digits
-    const value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    const value = e.target.value.replace(/\D/g, ''); 
     setActivationCode(value.substring(0, 6));
-    setShowLoginError(false); // Clear error on new input
+    setShowLoginError(false);
   }, []);
 
-  // Handle the "ACTIVAR" button click for login
   const handleActivate = useCallback(() => {
     if (activationCode === ADMIN_CODE) { 
       setIsLoggedIn(true);
@@ -43,73 +42,64 @@ const App: React.FC = () => {
     }
   }, [activationCode]);
 
-  // Handle logging out from the application
+  // Handlers de Logout
   const handleLogout = useCallback(() => {
     setIsLoggedIn(false);
-    setActivationCode(''); // Clear activation code
-    setUserRole(null); // Reset main app state
-    setPatientData({ // Reset patient data
-      fullName: '',
-      age: '',
-      gender: '',
-      currentMedication: '',
-      healthHistory: '',
-    });
+    setIsChatActive(false); // Resetea si estaba en el chat
+    setActivationCode(''); 
+    setUserRole(null);
+    setPatientData({ fullName: '', age: '', gender: '', currentMedication: '', healthHistory: '' });
   }, []);
 
-  // Handle selection of user role
+  // Handlers de Formulario
   const handleRoleSelect = useCallback((role: UserRole) => {
     setUserRole(role);
   }, []);
 
-  // Handle changes in patient data input fields
   const handlePatientDataChange = useCallback((field: keyof PatientData, value: string) => {
     setPatientData((prevData) => ({
       ...prevData,
       [field]: value,
     }));
   }, []);
+  
+  // Handlers de Botones de Header (Mantenidos)
+  const onViewHistory = useCallback(() => { alert('Funcionalidad "Historial" no implementada.'); }, []);
+  const onAdminPanel = useCallback(() => { alert('Funcionalidad "Panel de Administración" no implementada.'); }, []);
+  const onSupportTicket = useCallback(() => { alert('Funcionalidad "Soporte Técnico" no implementada.'); }, []);
 
-  // Check if the "INICIAR ASISTENCIA" button should be enabled
+
+  // Lógica para iniciar el Chat (Transición)
+  const onInitiateAssistance = useCallback(() => {
+    if (isInitiateAssistanceEnabled) {
+      setIsChatActive(true); // <--- CAMBIO DE VISTA PRINCIPAL AL CHAT
+    }
+  }, []);
+
+  // Lógica para finalizar el Chat y volver al formulario
+  const handleEndAssistance = useCallback(() => {
+    setIsChatActive(false);
+    setUserRole(null); // Borrar selección de rol para un nuevo caso limpio
+    setPatientData({ fullName: '', age: '', gender: '', currentMedication: '', healthHistory: '' });
+  }, []);
+
+
+  // Validación de campos requeridos
   const isInitiateAssistanceEnabled = useMemo(() => {
     return (
       userRole !== null &&
       patientData.fullName.trim() !== '' &&
       patientData.age.trim() !== '' &&
-      !isNaN(Number(patientData.age)) && // Ensure age is a valid number
-      Number(patientData.age) > 0 // Ensure age is a positive number
+      !isNaN(Number(patientData.age)) &&
+      Number(patientData.age) >= 0 
     );
   }, [userRole, patientData.fullName, patientData.age]);
 
-  // Placeholder functions for button actions
-  const onViewHistory = useCallback(() => {
-    alert('Funcionalidad "Historial" no implementada.');
-  }, []);
-
-  const onAdminPanel = useCallback(() => {
-    alert('Funcionalidad "Panel de Administración" no implementada.');
-  }, []);
-
-  const onInitiateAssistance = useCallback(() => {
-    alert('Funcionalidad "Iniciar Asistencia" no implementada con los datos: \n' +
-          `Rol: ${userRole}\n` +
-          `Nombre: ${patientData.fullName}\n` +
-          `Edad: ${patientData.age}\n` +
-          `Sexo: ${patientData.gender || 'No especificado'}\n` +
-          `Medicación: ${patientData.currentMedication || 'Ninguna'}\n` +
-          `Antecedentes: ${patientData.healthHistory || 'Ninguno'}`);
-  }, [userRole, patientData]);
-
-  const onSupportTicket = useCallback(() => {
-    alert('Funcionalidad "Soporte Técnico" no implementada.');
-  }, []);
 
   // Render Login Page if not logged in
   if (!isLoggedIn) {
     return (
-      // Login Page: Mantenemos el estilo de alineación a la derecha
       <div className="min-h-screen bg-gray-900 flex justify-end items-center p-4">
-        {/* Container for login content, constrained width and right-aligned */}
         <div className="flex flex-col items-center text-center max-w-sm w-full p-6 rounded-lg bg-gray-800 shadow-lg lg:mr-16">
           <HeartAnimation size={200} />
           <h1 className="text-white text-4xl font-extrabold mt-8 tracking-widest">SUMA</h1>
@@ -139,7 +129,7 @@ const App: React.FC = () => {
             >
               ACTIVAR
             </button>
-            <p className="text-red-500 text-xs mt-4">{APP_VERSION}</p>
+            {/* La versión debe importarse de constants.ts si la usas aquí */}
           </div>
         </div>
       </div>
@@ -157,33 +147,43 @@ const App: React.FC = () => {
       />
 
       <main className="flex-1 p-3 overflow-y-auto">
-        {/* Contenedor de Formulario: max-w-xl y mx-auto para centrar. */}
-        <div className="max-w-xl mx-auto bg-white p-4 rounded-lg shadow-lg text-gray-900">
-          {/* User Role Selection */}
-          <RoleSelector selectedRole={userRole} onSelectRole={handleRoleSelect} />
-          {/* Patient Data Form */}
-          <PatientForm patientData={patientData} onDataChange={handlePatientDataChange} />
+        {isChatActive ? (
+          // 1. Interfaz de Chat (Vista activa)
+          <div className="max-w-3xl h-[calc(100vh-80px)] mx-auto"> 
+            <ChatInterface 
+              userRole={userRole as UserRole} 
+              patientData={patientData}
+              onEndAssistance={handleEndAssistance} 
+            />
+          </div>
+        ) : (
+          // 2. Formulario de Datos (Vista inactiva)
+          <div className="max-w-xl mx-auto bg-white p-4 rounded-lg shadow-lg text-gray-900">
+            <RoleSelector selectedRole={userRole} onSelectRole={handleRoleSelect} />
+            {/* Asumo que PatientForm existe y tiene las props correctas */}
+            <PatientForm patientData={patientData} onDataChange={handlePatientDataChange} />
 
-          {/* "INICIAR ASISTENCIA" Button (Se mantiene py-3) */}
-          <button
-            onClick={onInitiateAssistance}
-            disabled={!isInitiateAssistanceEnabled}
-            className={`w-full py-3 px-6 rounded-lg text-lg font-bold uppercase transition-colors duration-200 mb-3
-                        ${isInitiateAssistanceEnabled
-                          ? 'bg-red-600 text-white hover:bg-red-700'
-                          : 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                        }`}
-          >
-            INICIAR ASISTENCIA
-          </button>
-          {/* "SOPORTE TECNICO" Button (CLAVE DE COMPACIDAD: text-base a text-sm para reducir altura) */}
-          <button
-            onClick={onSupportTicket}
-            className="w-full py-2 px-6 rounded-lg text-sm font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
-          >
-            SOPORTE TECNICO
-          </button>
-        </div>
+            {/* "INICIAR ASISTENCIA" Button (Activa el chat) */}
+            <button
+              onClick={onInitiateAssistance}
+              disabled={!isInitiateAssistanceEnabled}
+              className={`w-full py-3 px-6 rounded-lg text-lg font-bold uppercase transition-colors duration-200 mb-3
+                          ${isInitiateAssistanceEnabled
+                            ? 'bg-red-600 text-white hover:bg-red-700'
+                            : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                          }`}
+            >
+              INICIAR ASISTENCIA
+            </button>
+            {/* "SOPORTE TECNICO" Button */}
+            <button
+              onClick={onSupportTicket}
+              className="w-full py-2 px-6 rounded-lg text-sm font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+            >
+              SOPORTE TECNICO
+            </button>
+          </div>
+        )}
       </main>
     </div>
   );
