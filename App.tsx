@@ -1,4 +1,4 @@
-// ./App.tsx (Máxima Optimización de Espacio)
+// ./App.tsx (Ajuste del Botón Soporte)
 
 import React, { useState, useCallback, useMemo } from 'react';
 import HeartAnimation from './components/HeartAnimation';
@@ -35,7 +35,6 @@ const App: React.FC = () => {
 
   // Handle the "ACTIVAR" button click for login
   const handleActivate = useCallback(() => {
-    // ADMIN_CODE es 561393 (usando tu constante)
     if (activationCode === ADMIN_CODE) { 
       setIsLoggedIn(true);
       setShowLoginError(false);
@@ -84,7 +83,7 @@ const App: React.FC = () => {
 
   // Placeholder functions for button actions
   const onViewHistory = useCallback(() => {
-    alert('Funcionalidad "Ver Historial" no implementada.');
+    alert('Funcionalidad "Historial" no implementada.');
   }, []);
 
   const onAdminPanel = useCallback(() => {
@@ -157,20 +156,15 @@ const App: React.FC = () => {
         onLogout={handleLogout}
       />
 
-      {/* CLAVE DE COMPACIDAD: padding general reducido a p-3 */}
       <main className="flex-1 p-3 overflow-y-auto">
-        {/* SECCIÓN "NUEVO CASO" ELIMINADA */}
-
-        {/* Contenedor de Formulario: max-w-xl (ancho limitado) y mx-auto (centrado) */}
-        {/* CLAVE DE ANCHO: Se elimina ml-auto mr-4 lg:mr-16 y se usa mx-auto para centrar. */}
-        {/* CLAVE DE COMPACIDAD: padding interno reducido a p-4 */}
+        {/* Contenedor de Formulario: max-w-xl y mx-auto para centrar. */}
         <div className="max-w-xl mx-auto bg-white p-4 rounded-lg shadow-lg text-gray-900">
           {/* User Role Selection */}
           <RoleSelector selectedRole={userRole} onSelectRole={handleRoleSelect} />
           {/* Patient Data Form */}
           <PatientForm patientData={patientData} onDataChange={handlePatientDataChange} />
 
-          {/* "INICIAR ASISTENCIA" Button */}
+          {/* "INICIAR ASISTENCIA" Button (Se mantiene py-3) */}
           <button
             onClick={onInitiateAssistance}
             disabled={!isInitiateAssistanceEnabled}
@@ -182,11 +176,10 @@ const App: React.FC = () => {
           >
             INICIAR ASISTENCIA
           </button>
-          {/* "SOPORTE TECNICO" Button */}
+          {/* "SOPORTE TECNICO" Button (CLAVE DE COMPACIDAD: text-base a text-sm para reducir altura) */}
           <button
             onClick={onSupportTicket}
-            // CLAVE DE COMPACIDAD: py-2 en lugar de py-3
-            className="w-full py-2 px-6 rounded-lg text-lg font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+            className="w-full py-2 px-6 rounded-lg text-sm font-bold uppercase bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
           >
             SOPORTE TECNICO
           </button>
