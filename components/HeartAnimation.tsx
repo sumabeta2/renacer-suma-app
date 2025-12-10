@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Onda ECG Ajustada)
+// ./components/HeartAnimation.tsx (Onda ECG Ajustada y Profesional)
 
 import React from 'react';
 
@@ -28,7 +28,7 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
       className="relative flex items-center justify-center heart-beat-container"
       style={heartStyle}
     >
-      {/* Corazón SVG: Forma estándar, Borde Azul, Relleno Rojo. Utiliza la clase 'heart-shape' */}
+      {/* Corazón SVG: Forma estándar, Borde Azul, Relleno Rojo. */}
       <svg
         className="text-red-600 heart-shape absolute" // Aplica clase para el latido
         fill="currentColor"
@@ -56,14 +56,14 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
           preserveAspectRatio="none"
           style={{ width: '200%', height: '100%' }}
         >
-          {/* LA ONDA DEL ECG HA SIDO AJUSTADA A LA IMAGEN (más picos, más detalle) */}
+          {/* ONDA ECG AJUSTADA: Trazado más limpio con el patrón PQRST típico de un ECG profesional */}
           <polyline
             className="ecg-line" // Aplica clase para la animación ECG
             fill="none"
-            stroke="#059669" 
-            strokeWidth="1.5" // Grosor ideal
-            // Nuevo trazado de ECG con la forma de la imagen
-            points="0,10 5,10 7,9 9,10 10,10 11,8 12,12 13,10 15,10 16,9 18,10 19,10 20,8 21,12 22,10 24,10 26,9 28,10 30,10 31,8 32,12 33,10 100,10"
+            stroke="#059669" // Color verde/turquesa de la imagen
+            strokeWidth="1.5"
+            // Nuevo trazado de ECG con pico QRS definido
+            points="0,10 5,10 8,9 10,11 11,10 12,10 13,8 14,14 15,10 16,10 18,10 21,9 23,11 24,10 25,10 26,8 27,14 28,10 30,10 100,10"
           />
         </svg>
       </div>
