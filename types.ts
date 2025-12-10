@@ -1,24 +1,24 @@
-// ./types.ts (CORRECCIÓN FINAL DE SINTAXIS PARA BUILDERS)
-
-// Definición de roles del usuario (Enum)
+// src/types.ts
 export enum UserRole {
-  Medico = 'Médico',
-  Enfermero = 'Enfermero/a',
-  Paramedico = 'Paramédico',
-  PrimerRespondiente = 'Primer Respondiente',
+  Medico = 'Medico',
+  Enfermero = 'Enfermero/a',
+  Paramedico = 'Paramedico',
+  PrimerRespondiente = 'Primer Respondiente',
 }
 
-// Interfaz para los datos del paciente
 export interface PatientData {
-  fullName: string;
-  age: string;
-  gender: string;
-  currentMedication: string;
-  healthHistory: string;
+  fullName: string;
+  age: string;
+  gender: string;
+  currentMedication: string;
+  healthHistory: string;
 }
 
-// Nueva interfaz para los mensajes del chat
+export type Sender = 'user' | 'suma';
+
 export interface Message {
-  sender: 'suma' | 'user'; 
-  text: string;
+  id: string;
+  text: string;
+  sender: Sender;
+  timestamp: number;
 }
