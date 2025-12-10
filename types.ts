@@ -1,14 +1,14 @@
 // ./types.ts
 
-// Definición de roles del usuario (Mismo contenido, exportado desde su propio archivo)
+// Definición de roles del usuario (Enum)
 export enum UserRole {
-  Medico = 'Médico', // Corregido el acento para consistencia en el display
-  Enfermero = 'Enfermero/a', // Añadida '/a' para reflejar el uso en el selector
-  Paramedico = 'Paramédico', // Corregido el acento
-  PrimerRespondiente = 'Primer Respondiente', // Texto completo
+  Medico = 'Médico',
+  Enfermero = 'Enfermero/a',
+  Paramedico = 'Paramédico',
+  PrimerRespondiente = 'Primer Respondiente',
 }
 
-// Interfaz para los datos del paciente (Mantenida)
+// Interfaz para los datos del paciente
 export interface PatientData {
   fullName: string;
   age: string;
