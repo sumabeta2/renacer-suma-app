@@ -1,15 +1,26 @@
+// ./index.tsx
+
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+// IMPORTANTE: Se requiere importar la versión 'client' para 'createRoot'
+import { createRoot } from 'react-dom/client'; 
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+// Importamos el componente principal
+import App from './App'; 
+
+// 1. Encontrar el elemento raíz en el HTML
+const container = document.getElementById('root');
+
+if (container) {
+  // 2. Crear la raíz de React 
+  const root = createRoot(container); 
+  
+  // 3. Renderizar la aplicación
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+} else {
+  // (Opcional) Un mensaje en caso de que el div#root no exista
+  console.error('Failed to find the root element in the DOM.');
 }
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
