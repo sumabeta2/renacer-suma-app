@@ -1,4 +1,4 @@
-// ./components/HeartAnimation.tsx (Versión Final Definitiva)
+// ./components/HeartAnimation.tsx (Onda ECG Ajustada)
 
 import React from 'react';
 
@@ -56,14 +56,14 @@ const HeartAnimation: React.FC<HeartAnimationProps> = ({ size }) => {
           preserveAspectRatio="none"
           style={{ width: '200%', height: '100%' }}
         >
-          {/* La onda del Electrocardiograma (ECG) animada */}
+          {/* LA ONDA DEL ECG HA SIDO AJUSTADA A LA IMAGEN (más picos, más detalle) */}
           <polyline
             className="ecg-line" // Aplica clase para la animación ECG
             fill="none"
             stroke="#059669" 
-            // AJUSTE CRÍTICO: Incrementamos el grosor de la línea
-            strokeWidth="1.5"
-            points="0,10 5,10 7,9 9,10 11,10 12,9.5 13,10 15,10 16,7 17,13 18,10 22,10 24,10 26,9 28,10 30,10 31,9.5 32,10 34,10 35,7 36,13 37,10 100,10"
+            strokeWidth="1.5" // Grosor ideal
+            // Nuevo trazado de ECG con la forma de la imagen
+            points="0,10 5,10 7,9 9,10 10,10 11,8 12,12 13,10 15,10 16,9 18,10 19,10 20,8 21,12 22,10 24,10 26,9 28,10 30,10 31,8 32,12 33,10 100,10"
           />
         </svg>
       </div>
