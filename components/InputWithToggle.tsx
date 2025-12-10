@@ -50,10 +50,9 @@ const InputWithToggle: React.FC<InputWithToggleProps> = ({
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         ) : (
-          // 🚫 OJO TACHADO (Código Oculto) - Versión limpia y legible
+          // 🚫 OJO TACHADO (Código Oculto) - Versión FINAL ESTABLE
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.988 5.704a2.25 2.25 0 00-2.447 2.447L10.5 18.251c.075.298.298.54.596.635l2.404.722a.75.75 0 00.75-1.309L12 11.25m-1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m1.5 1.5l1.5-1.5m-3.75-3.75l1.5-1.5m-3.75-3.75l1.5-1.5" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M18.895 18.293a10 10 0 00-14.79 0m.789-.79a7.5 7.5 0 0110.608 0M12 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.988 5.704A10.125 10.125 0 0112 3a9.855 9.855 0 014.128 1.049m-9.355 4.791a3 3 0 115.356 2.373M18.89 19.384A10.123 10.123 0 0021.75 12a10.125 10.125 0 00-4.09-8.407m-4.321 4.32a.75.75 0 01.12.92L6.12 12m0 0L3.988 5.704M5.63 12.5L21.75 12m-2.88 5.75L21.75 12" />
           </svg>
         )}
       </button>
